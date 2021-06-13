@@ -12,6 +12,7 @@ plugins {
 dependencies {
     implementation files('lib/json.jar')
     implementation files('lib/junit-platform-console-standalone-1.7.0-M1.jar')
+    implementation files('lib/jsonassert-1.2.3.jar')
 }
 
 test {
