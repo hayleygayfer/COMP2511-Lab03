@@ -10,6 +10,8 @@
 * Adapt existing systems to changes in requirements
 * Design extensible and cohesive software solutions
 * Practice creating UML Diagrams
+* Practice writing integration and unit tests with JUnit
+* Use coverage checkers on Java programs
 
 ## Setup
 
@@ -30,10 +32,10 @@ Inside the `src/enrolment` package, there is some skeleton code for a university
 * Students enrol in courses that are offered in particular semesters
 * Students receive grades (pass, fail, etc.) for courses in particular semesters
 * Courses may have pre-requisites (other courses) and must have credit point values
-* For a student to enrol in a course, s/he must have passed all prerequisite courses
+* For a student to enrol in a course, they must have passed all prerequisite courses
 * Course offerings are broken down into multiple sessions (lectures, tutorials and labs)
 * Sessions in a course offering for a particular semester have an allocated room and timeslot
-* If a student enrols in a course, s/he must also enrol in some sessions of that course
+* If a student enrols in a course, they must also enrol in some sessions of that course
 
 ### UML Diagram
 
