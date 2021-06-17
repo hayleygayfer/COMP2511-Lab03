@@ -58,7 +58,7 @@ After finishing the implementation, make sure your diagram is still consistent w
 
 ### Coverage Checking
 
-For this exercise, we require that your JUnit tests give at least 95% coverage on your code. In this course we will be using a coverage checker called **Gradle**. Gradle also allows you to see the results of your tests against your code, including test failures.
+For this exercise, we require that your JUnit tests give at least 95% coverage on your code. In this course we will be using a coverage checker called **Gradle**. Gradle also allows you to see the results of your tests against your code, including test failures.  You can ignore all simple getters/setters (i.e. `this.x = x` and `return x;` sort of functions) and we'll just look at the coverage of your other functions.
 
 Download the zip file from (download should start automatically): [https://gradle.org/next-steps/?version=5.4.1&format=bin](https://gradle.org/next-steps/?version=5.4.1&format=bin)
 
