@@ -68,6 +68,10 @@ public class Enrolment {
         if (offering.getSessions().contains(newSession)) sessions.add(newSession);
     }
 
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
     public boolean checkSessionsFulfilled() {
         boolean containsLecture = false;
         boolean containsTutorial = false;

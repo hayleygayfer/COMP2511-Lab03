@@ -7,6 +7,7 @@ import enrolment.Tutorial;
 import enrolment.Lab;
 import enrolment.Student;
 import enrolment.Grade;
+import enrolment.Enrolment;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,33 @@ import java.time.LocalTime;
 public class EnrolmentTest {
 
     @Test
+    public void testGetTermOfEnrolment() {
+        Course comp1511 = new Course("COMP1511", "Programming Fundamentals");
+        CourseOffering comp1511Offering = new CourseOffering(comp1511, "19T1");
+
+        Student student1 = new Student("z3141592");
+
+        Enrolment newEnrolment = new Enrolment(comp1511Offering, student1);
+
+        assertEquals("19T1", newEnrolment.getTerm());
+    }
+
+    @Test 
+    public void testGetGrade() {
+        Course comp1511 = new Course("COMP1511", "Programming Fundamentals");
+        CourseOffering comp1511Offering = new CourseOffering(comp1511, "19T1");
+
+        Student student1 = new Student("z3141592");
+
+        Enrolment newEnrolment = new Enrolment(comp1511Offering, student1);
+
+        Grade newGrade = new Grade(70, "CR");
+        newEnrolment.setGrade(newGrade);
+
+        assertEquals(newGrade, newEnrolment.getGrade());
+    }
+
+    @Test
     public void testIntegration() {
 
         // Create courses
@@ -33,6 +61,10 @@ public class EnrolmentTest {
         CourseOffering comp1511Offering = new CourseOffering(comp1511, "19T1");
         CourseOffering comp1531Offering = new CourseOffering(comp1531, "19T1");
         CourseOffering comp2521Offering = new CourseOffering(comp2521, "19T2");
+
+        assertEquals("19T1", comp1511Offering.getTerm());
+        assertEquals("19T1", comp1531Offering.getTerm());
+        assertEquals("19T2", comp2521Offering.getTerm());
 
         // TODO Create some sessions for the courses
         Lecture lecture1 = new Lecture("Ainsworth", DayOfWeek.MONDAY, LocalTime.of(15, 30), LocalTime.of(17, 30), "Ashesh Mahidadia");
@@ -79,5 +111,43 @@ public class EnrolmentTest {
         // the prereqs)
         comp2521Offering.enrolStudent(student1);
         assertTrue(comp2521Offering.hasStudent(student1));
+    }
+
+    @Test
+    public void testDuplicateSessionTypes() {
+        Course comp1511 = new Course("COMP1511", "Programming Fundamentals");
+        CourseOffering comp1511Offering = new CourseOffering(comp1511, "19T1");
+
+        Student student1 = new Student("z3141592");
+
+        Lecture lecture1 = new Lecture("Ainsworth", DayOfWeek.MONDAY, LocalTime.of(15, 30), LocalTime.of(17, 30), "Ashesh Mahidadia");
+        Tutorial tutorial1 = new Tutorial("Electrical Building", DayOfWeek.TUESDAY, LocalTime.of(11, 00), LocalTime.of(13, 00), "Simon Haddad");
+        Lab lab1 = new Lab("J17", DayOfWeek.WEDNESDAY, LocalTime.of(17, 15), LocalTime.of(20, 15), "Braedon Wooding", "John Doe");
+
+        Lecture lecture2 = new Lecture("Ainsworth", DayOfWeek.THURSDAY, LocalTime.of(9, 30), LocalTime.of(11, 30), "Ashesh Mahidadia");
+        Tutorial tutorial2 = new Tutorial("Electrical Building", DayOfWeek.FRIDAY, LocalTime.of(14, 00), LocalTime.of(17, 00), "Jane Doe");
+        Lab lab2 = new Lab("J17", DayOfWeek.MONDAY, LocalTime.of(12, 15), LocalTime.of(15, 15), "Big Chungus", "Sung Jin Woo");
+
+        comp1511Offering.addSession(lecture1);
+        comp1511Offering.addSession(tutorial1);
+        comp1511Offering.addSession(lab1);
+
+        comp1511Offering.addSession(lecture2);
+        comp1511Offering.addSession(tutorial2);
+        comp1511Offering.addSession(lab2);
+
+        Enrolment newEnrolment = new Enrolment(comp1511Offering, student1);
+
+        newEnrolment.addSession(lecture1);
+        newEnrolment.addSession(tutorial1);
+        newEnrolment.addSession(lab1);
+
+        assertTrue(newEnrolment.checkSessionsFulfilled());
+
+        newEnrolment.addSession(lecture2);
+        newEnrolment.addSession(tutorial2);
+        newEnrolment.addSession(lab2);
+
+        assertEquals(3, newEnrolment.getSessions().size());
     }
 }
