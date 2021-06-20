@@ -20,7 +20,7 @@ import java.time.LocalTime;
 
 public class SessionTest {
     @Test
-    public void testCreateSession() {
+    public void testSession() {
         Lecture lecture1 = new Lecture("Ainsworth", DayOfWeek.MONDAY, LocalTime.of(15, 30), LocalTime.of(17, 30), "Ashesh Mahidadia");
         
         assertEquals(DayOfWeek.MONDAY, lecture1.getDay());
@@ -34,5 +34,13 @@ public class SessionTest {
         assertEquals("Simon Haddad", tutorial1.getTutor());
         assertEquals("Braedon Wooding", lab1.getTutor());
         assertEquals("John Doe", lab1.getLabAssistant());
+
+        lab1.setTutor("new Tutor");
+        lab1.setLabAssistant("new Lab Assistant");
+
+        assertEquals("new Tutor", lab1.getTutor());
+        assertEquals("new Lab Assistant", lab1.getLabAssistant());
+
+        assertEquals("J17", lab1.getLocation());
     }
 }

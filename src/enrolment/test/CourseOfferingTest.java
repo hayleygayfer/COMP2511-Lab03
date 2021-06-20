@@ -63,6 +63,10 @@ public class CourseOfferingTest {
         comp1511Offering.addSession(lab1);
 
         assertEquals(3, comp1511Offering.getSessions().size());
+
+        comp1511Offering.removeSession(lecture1);
+
+        assertEquals(2, comp1511Offering.getSessions().size());
     }
 
     @Test 

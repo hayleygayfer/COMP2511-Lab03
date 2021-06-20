@@ -96,6 +96,8 @@ public class StudentTest {
         Grade passingGrade = new Grade(50, "PS");
         newStudent.giveCourseGrade(passingGrade, comp1511Offering);
 
+        assertEquals(passingGrade, newStudent.getCourseGrade(comp1511Offering));
+
         comp1531Offering.enrolStudent(newStudent);
         newStudent.addEnrolmentSession(comp1531Offering, lecture1);
         newStudent.addEnrolmentSession(comp1531Offering, tutorial1);
