@@ -9,6 +9,7 @@ public class Session {
     private LocalTime start;
     private LocalTime end;
 
+
     public Session(String location, DayOfWeek day, LocalTime start, LocalTime end) {
         this.location = location;
         this.day = day;
